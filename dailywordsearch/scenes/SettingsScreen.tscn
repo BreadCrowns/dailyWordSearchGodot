@@ -20,6 +20,23 @@ grow_vertical = 2
 text = "SETTINGS"
 horizontal_alignment = 1
 
+[node name="AccessibilityCheck" type="CheckBox" parent="VBoxContainer"]
+text = "Colorblind Mode"
+
+[node name="SfxHBox" type="HBoxContainer" parent="VBoxContainer"]
+
+[node name="SfxLabel" type="Label" parent="VBoxContainer/SfxHBox"]
+text = "SFX Volume"
+
+[node name="SfxSlider" type="HSlider" parent="VBoxContainer/SfxHBox"]
+
+[node name="DarkModeCheck" type="CheckBox" parent="VBoxContainer"]
+text = "Dark Mode"
+
+[node name="LegalButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+text = "LEGAL"
+
 [node name="BackButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 text = "BACK"
