@@ -5,9 +5,9 @@ extends Control
 @onready var settings_button = $VBoxContainer/SettingsButton
 
 func _ready():
-	play_button.pressed.connect(_on_play_pressed)
-	history_button.pressed.connect(_on_history_pressed)
-	settings_button.pressed.connect(_on_settings_pressed)
+    play_button.pressed.connect(_on_play_pressed)
+    history_button.pressed.connect(_on_history_pressed)
+    settings_button.pressed.connect(_on_settings_pressed)
 
 func _on_play_pressed():
        var puzzle_scene = preload("res://scenes/PuzzleScreen.tscn").instantiate()
