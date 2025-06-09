@@ -1,0 +1,163 @@
+[gd_scene load_steps=2 format=3 uid="uid://c31dgj4sl456m"]
+
+[ext_resource type="Script" uid="uid://b46qfebdflt2k" path="res://scripts/PuzzleScreen.gd" id="1_pw1eq"]
+
+[node name="PuzzleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pw1eq")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="back_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "B"
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.31
+
+[node name="settings_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "S"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_colors/font_color = Color(0.783432, 3.70607e-06, 6.73831e-07, 1)
+theme_override_font_sizes/font_size = 50
+text = "TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+stretch_mode = 0
+
+[node name="LineLayer" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer/AspectRatioContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer/AspectRatioContainer"]
+layout_mode = 2
+columns = 12
+
+[node name="word_list_container" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="word_columns" type="HBoxContainer" parent="MarginContainer/VBoxContainer/word_list_container"]
+layout_mode = 2
+alignment = 1
+
+[node name="left_column" type="VBoxContainer" parent="MarginContainer/VBoxContainer/word_list_container/word_columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="word_label_left_0" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/left_column"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "WORD 1"
+horizontal_alignment = 2
+
+[node name="word_label_left_1" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/left_column"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "WORD 2"
+horizontal_alignment = 2
+
+[node name="word_label_left_2" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/left_column"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "WORD 3"
+horizontal_alignment = 2
+
+[node name="word_label_left_3" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/left_column"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "WORD 4"
+horizontal_alignment = 2
+
+[node name="word_label_left_4" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/left_column"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "WORD 5"
+horizontal_alignment = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/word_list_container/word_columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="right_column" type="VBoxContainer" parent="MarginContainer/VBoxContainer/word_list_container/word_columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="word_label_right_0" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/right_column"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "WORD 6"
+
+[node name="word_label_right_1" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/right_column"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "WORD 7"
+
+[node name="word_label_right_2" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/right_column"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "WORD 8"
+
+[node name="word_label_right_3" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/right_column"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "WORD 9"
+
+[node name="word_label_right_4" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/right_column"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "WORD 10"
+
+[node name="center_word_container" type="CenterContainer" parent="MarginContainer/VBoxContainer/word_list_container"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="word_label_center" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/center_word_container"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "WORD 11"
+horizontal_alignment = 1

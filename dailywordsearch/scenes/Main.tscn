@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj7rmsm5rl107"]
+
+[ext_resource type="Script" uid="uid://c6yhfwq7v7ve4" path="res://scripts/Main.gd" id="1_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://bkfoyrg506w8s" path="res://scenes/MainMenu.tscn" id="2_rarhs"]
+[ext_resource type="PackedScene" uid="uid://c31dgj4sl456m" path="res://scenes/PuzzleScreen.tscn" id="3_vcsgt"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0bbpv")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_rarhs")]
+layout_mode = 2
+anchors_preset = 0
+offset_top = 31.0
+
+[node name="PuzzleScreen" parent="." instance=ExtResource("3_vcsgt")]
+layout_mode = 2
+anchors_preset = 0
+offset_top = 31.0
