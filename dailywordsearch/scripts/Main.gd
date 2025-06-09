@@ -1,27 +1,25 @@
 extends Control
 
-@onready var tab_container = $TabContainer
-
-# Enum for tab indices (optional but helpful for readability)
-enum Tabs {
-	MAIN_MENU = 0,
-	PUZZLE = 1,
-	HISTORY = 2,
-	SETTINGS = 3
-}
+# Paths to scenes for navigation
+const MAIN_MENU_SCENE := "res://scenes/MainMenu.tscn"
+const PUZZLE_SCENE := "res://scenes/PuzzleScreen.tscn"
 
 func _ready():
-	# Start at the main menu
-	tab_container.current_tab = Tabs.MAIN_MENU
+    # Load the main menu when the scene starts
+    go_to_main_menu()
 
+# Switch to the main menu scene
 func go_to_main_menu():
-	tab_container.current_tab = Tabs.MAIN_MENU
+    get_tree().change_scene_to_file(MAIN_MENU_SCENE)
 
+# Switch to the puzzle scene
 func go_to_puzzle():
-	tab_container.current_tab = Tabs.PUZZLE
+    get_tree().change_scene_to_file(PUZZLE_SCENE)
 
+# Placeholder for a history screen
 func go_to_history():
-	tab_container.current_tab = Tabs.HISTORY
+    print("History screen not implemented")
 
+# Placeholder for a settings screen
 func go_to_settings():
-	tab_container.current_tab = Tabs.SETTINGS
+    print("Settings screen not implemented")
