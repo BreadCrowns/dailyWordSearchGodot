@@ -111,7 +111,7 @@ func _input(event):
 			active_line.begin_cap_mode = Line2D.LINE_CAP_ROUND
 			active_line.end_cap_mode = Line2D.LINE_CAP_ROUND
 			line_layer.add_child(active_line)
-			var start_pos = get_grid_cell_center(drag_start) - line_layer.get_global_position()
+                        var start_pos = get_grid_cell_center(drag_start) - line_layer.global_position
 			active_line.add_point(start_pos)
 			active_line.add_point(start_pos)
 		else:
@@ -123,14 +123,14 @@ func _input(event):
 			if is_straight_line(drag_start, drag_end):
 				result = process_selection(drag_start, drag_end)
 			if result:
-				var end_pos = get_grid_cell_center(drag_end) - line_layer.get_global_position()
+                                var end_pos = get_grid_cell_center(drag_end) - line_layer.global_position
 				active_line.set_point_position(1, end_pos)
 			else:
 				line_layer.remove_child(active_line)
 				active_line.queue_free()
 			active_line = null
 	elif (event is InputEventScreenDrag or event is InputEventMouseMotion) and dragging and active_line != null:
-		var current_pos = event.position - line_layer.get_global_position()
+                var current_pos = event.position - line_layer.global_position
 		active_line.set_point_position(1, current_pos)
 
 # Word selection logic
@@ -163,7 +163,7 @@ func process_selection(start: Vector2i, end: Vector2i) -> bool:
 
 # Utilities
 func get_grid_cell_from_position(pos: Vector2) -> Vector2i:
-	var grid_pos = grid.get_global_position()
+        var grid_pos = grid.global_position
 	var grid_size = grid.get_size()
 	var cell_size = grid_size / float(GRID_SIZE)
 	var local_pos = pos - grid_pos
@@ -172,12 +172,12 @@ func get_grid_cell_from_position(pos: Vector2) -> Vector2i:
 	return Vector2i(x, y)
 
 func get_grid_cell_center(pos: Vector2i) -> Vector2:
-	var grid_pos = grid.get_global_position()
+        var grid_pos = grid.global_position
 	var cell_size = grid.get_size() / Vector2(GRID_SIZE, GRID_SIZE)
 	return grid_pos + (Vector2(pos) * cell_size) + (cell_size / 2)
 
 func is_point_inside_grid(pos: Vector2) -> bool:
-	var grid_rect = Rect2(grid.get_global_position(), grid.get_size())
+        var grid_rect = Rect2(grid.global_position, grid.get_size())
 	return grid_rect.has_point(pos)
 
 func is_straight_line(start: Vector2i, end: Vector2i) -> bool:
