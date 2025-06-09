@@ -17,12 +17,12 @@ func load_history():
 		var data = JSON.parse_string(file.get_as_text())
 		file.close()
 		if typeof(data) == TYPE_ARRAY:
-			for entry in data:
-				var label = Label.new()
-				var date = entry.get("date", "")
-				var count = entry.get("solved_words", []).size()
-				label.text = "%s - %d words" % [date, count]
-				history_list.add_child(label)
+		for entry in data:
+			var label = Label.new()
+			var date = entry.get("date", "")
+			var count = entry.get("solved_words", []).size()
+			label.text = "%s - %d words" % [date, count]
+			history_list.add_child(label)
 
 func _on_back_pressed():
 	var scene = load("res://scenes/MainMenu.tscn")

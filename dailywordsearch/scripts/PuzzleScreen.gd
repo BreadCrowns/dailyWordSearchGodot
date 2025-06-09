@@ -40,13 +40,13 @@ var active_line: Line2D = null
 
 # Initialization
 func _ready():
-		http_request = HTTPRequest.new()
-		add_child(http_request)
-		http_request.request_completed.connect(_on_puzzle_request_completed)
-		puzzle_date = Time.get_date_string_from_system()
-		request_puzzle(puzzle_date)
-		set_process_input(true)
-		back_button.pressed.connect(_on_back_pressed)
+	http_request = HTTPRequest.new()
+	add_child(http_request)
+	http_request.request_completed.connect(_on_puzzle_request_completed)
+	puzzle_date = Time.get_date_string_from_system()
+	request_puzzle(puzzle_date)
+	set_process_input(true)
+	back_button.pressed.connect(_on_back_pressed)
 
 # Handle back button press
 func _on_back_pressed():
@@ -55,22 +55,22 @@ func _on_back_pressed():
 		var main_menu = scene.instantiate()
 		get_tree().root.add_child(main_menu)
 		queue_free()
-		else:
-				push_error("Failed to load MainMenu.tscn")
+	else:
+		push_error("Failed to load MainMenu.tscn")
 
 func request_puzzle(date: String):
-		var url = "https://your-project.firebaseio.com/puzzles/%s.json" % date
-		http_request.request(url)
+	var url = "https://your-project.firebaseio.com/puzzles/%s.json" % date
+	http_request.request(url)
 
 func _on_puzzle_request_completed(result, response_code, headers, body):
-		if result == OK and response_code == 200:
-				var text = body.get_string_from_utf8()
-				var data = JSON.parse_string(text)
-				if typeof(data) == TYPE_DICTIONARY:
-						grid_letters = data.get("grid", grid_letters)
-						words = data.get("words", words)
-		generate_grid()
-		load_words()
+	if result == OK and response_code == 200:
+		var text = body.get_string_from_utf8()
+		var data = JSON.parse_string(text)
+		if typeof(data) == TYPE_DICTIONARY:
+			grid_letters = data.get("grid", grid_letters)
+			words = data.get("words", words)
+	generate_grid()
+	load_words()
 
 # Generate the letter grid from the predefined string
 func generate_grid():
@@ -85,9 +85,9 @@ func generate_grid():
 	var index := 0
 	for y in range(GRID_SIZE):
 		for x in range(GRID_SIZE):
-						var label = Label.new()
-						label.text = grid_letters[index]
-						index += 1
+			var label = Label.new()
+			label.text = grid_letters[index]
+			index += 1
 			label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 			label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -101,23 +101,23 @@ func generate_grid():
 
 # Load and display the word list
 func load_words():
-		for i in range(min(5, words.size())):
-				word_list_col1[i].text = words[i].to_upper()
-				word_list_col1[i].add_theme_color_override("font_color", Color.WHITE)
-				word_list_col1[i].add_theme_font_size_override("font_size", 30)
-				word_list_col1[i].add_theme_font_override("font", load("res://fonts/Roboto-BlackItalic.ttf"))
-		for i in range(5, min(10, words.size())):
-				word_list_col2[i - 5].text = words[i].to_upper()
-				word_list_col2[i - 5].add_theme_color_override("font_color", Color.WHITE)
-				word_list_col2[i - 5].add_theme_font_size_override("font_size", 30)
-				word_list_col2[i - 5].add_theme_font_override("font", load("res://fonts/Roboto-BlackItalic.ttf"))
-		if words.size() > 10:
-				word_label_center.text = words[10].to_upper()
-		else:
-				word_label_center.text = ""
-		word_label_center.add_theme_color_override("font_color", Color.WHITE)
-		word_label_center.add_theme_font_size_override("font_size", 30)
-		word_label_center.add_theme_font_override("font", load("res://fonts/Roboto-BlackItalic.ttf"))
+	for i in range(min(5, words.size())):
+		word_list_col1[i].text = words[i].to_upper()
+		word_list_col1[i].add_theme_color_override("font_color", Color.WHITE)
+		word_list_col1[i].add_theme_font_size_override("font_size", 30)
+		word_list_col1[i].add_theme_font_override("font", load("res://fonts/Roboto-BlackItalic.ttf"))
+	for i in range(5, min(10, words.size())):
+		word_list_col2[i - 5].text = words[i].to_upper()
+		word_list_col2[i - 5].add_theme_color_override("font_color", Color.WHITE)
+		word_list_col2[i - 5].add_theme_font_size_override("font_size", 30)
+		word_list_col2[i - 5].add_theme_font_override("font", load("res://fonts/Roboto-BlackItalic.ttf"))
+	if words.size() > 10:
+		word_label_center.text = words[10].to_upper()
+	else:
+		word_label_center.text = ""
+	word_label_center.add_theme_color_override("font_color", Color.WHITE)
+	word_label_center.add_theme_font_size_override("font_size", 30)
+	word_label_center.add_theme_font_override("font", load("res://fonts/Roboto-BlackItalic.ttf"))
 
 # Input handling
 func _input(event):
@@ -164,45 +164,45 @@ func process_selection(start: Vector2i, end: Vector2i) -> bool:
 	if not is_straight_line(start, end):
 		return false
 
-		var selected_word := ""
-		var pos = start
-		while pos != end + step:
-				var index = pos.y * GRID_SIZE + pos.x
-				if index >= 0 and index < grid_letters.length():
-						selected_word += grid_letters[index]
-				pos += step
+	var selected_word := ""
+	var pos = start
+	while pos != end + step:
+		var index = pos.y * GRID_SIZE + pos.x
+		if index >= 0 and index < grid_letters.length():
+			selected_word += grid_letters[index]
+			pos += step
 
-		var match := words.any(func(w): return w.to_lower() == selected_word.to_lower() or w.to_lower() == selected_word.reverse().to_lower())
-		if match:
-				var normalized = selected_word.to_lower()
-				if normalized not in solved_words:
-						solved_words.append(normalized)
-				for label in word_list_col1 + word_list_col2 + [word_label_center]:
-						if words.size() > 10 and label == word_label_center and (words[10].to_lower() == normalized or words[10].to_lower() == normalized.reverse()):
-								label.text = words[10].to_upper()
-								label.add_theme_color_override("font_color", Color.GREEN)
-								break
-						elif label.text.to_lower() == normalized or label.text.to_lower() == normalized.reverse():
-								label.add_theme_color_override("font_color", Color.GREEN)
-								break
-				if solved_words.size() == words.size():
-						_record_history()
-				return true
-		return false
+	var match := words.any(func(w): return w.to_lower() == selected_word.to_lower() or w.to_lower() == selected_word.reverse().to_lower())
+	if match:
+		var normalized = selected_word.to_lower()
+		if normalized not in solved_words:
+			solved_words.append(normalized)
+		for label in word_list_col1 + word_list_col2 + [word_label_center]:
+			if words.size() > 10 and label == word_label_center and (words[10].to_lower() == normalized or words[10].to_lower() == normalized.reverse()):
+				label.text = words[10].to_upper()
+				label.add_theme_color_override("font_color", Color.GREEN)
+				break
+			elif label.text.to_lower() == normalized or label.text.to_lower() == normalized.reverse():
+				label.add_theme_color_override("font_color", Color.GREEN)
+				break
+		if solved_words.size() == words.size():
+			_record_history()
+		return true
+	return false
 
 func _record_history():
-		var path = "user://history.json"
-		var history = []
-		if FileAccess.file_exists(path):
-				var file = FileAccess.open(path, FileAccess.READ)
-				var data = JSON.parse_string(file.get_as_text())
-				file.close()
-				if typeof(data) == TYPE_ARRAY:
-						history = data
-		history.append({"date": puzzle_date, "solved_words": solved_words})
-		var file = FileAccess.open(path, FileAccess.WRITE)
-		file.store_string(JSON.stringify(history))
+	var path = "user://history.json"
+	var history = []
+	if FileAccess.file_exists(path):
+		var file = FileAccess.open(path, FileAccess.READ)
+		var data = JSON.parse_string(file.get_as_text())
 		file.close()
+		if typeof(data) == TYPE_ARRAY:
+			history = data
+	history.append({"date": puzzle_date, "solved_words": solved_words})
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	file.store_string(JSON.stringify(history))
+	file.close()
 
 # Utilities
 func get_grid_cell_from_position(pos: Vector2) -> Vector2i:
