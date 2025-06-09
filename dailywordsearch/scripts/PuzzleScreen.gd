@@ -74,9 +74,9 @@ func _on_puzzle_request_completed(result, response_code, headers, body):
 
 # Generate the letter grid from the predefined string
 func generate_grid():
-		if grid_letters.length() < GRID_SIZE * GRID_SIZE:
-				push_error("GRID_LETTERS string is too short for grid size")
-				return
+	if grid_letters.length() < GRID_SIZE * GRID_SIZE:
+		push_error("GRID_LETTERS string is too short for grid size")
+		return
 
 	for child in grid.get_children():
 		grid.remove_child(child)
