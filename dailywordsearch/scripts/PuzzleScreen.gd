@@ -55,7 +55,7 @@ func _init_background():
         bg_rect.anchor_bottom = 1
         bg_rect.color = Color.BLACK
         add_child(bg_rect)
-        bg_rect.lower()
+        move_child(bg_rect, 0)
 
 func _init_fonts():
         var dir = DirAccess.open("res://fonts")
