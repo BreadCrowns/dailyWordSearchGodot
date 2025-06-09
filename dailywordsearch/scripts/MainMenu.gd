@@ -1,13 +1,26 @@
 extends Control
 
-@onready var play_button = $VBoxContainer/PlayButton
-@onready var history_button = $VBoxContainer/HistoryButton
-@onready var settings_button = $VBoxContainer/SettingsButton
+@onready var play_button = $ContentContainer/VBox/PlayButton
+@onready var history_button = $HistoryButton
+@onready var settings_button = $SettingsButton
+@onready var title_label = $ContentContainer/VBox/Title
+@onready var background = $Background
 
 func _ready():
-	play_button.pressed.connect(_on_play_pressed)
-	history_button.pressed.connect(_on_history_pressed)
-	settings_button.pressed.connect(_on_settings_pressed)
+        play_button.pressed.connect(_on_play_pressed)
+        history_button.pressed.connect(_on_history_pressed)
+        settings_button.pressed.connect(_on_settings_pressed)
+        title_label.text = "Spectacled Giraffe Daily"
+        play_button.text = "Word Search Today"
+        background.texture = load("res://images/giraffe_background.svg")
+        var hist_tex = load("res://images/history_icon.svg")
+        history_button.texture_normal = hist_tex
+        history_button.texture_pressed = hist_tex
+        history_button.texture_hover = hist_tex
+        var set_tex = load("res://images/settings_icon.svg")
+        settings_button.texture_normal = set_tex
+        settings_button.texture_pressed = set_tex
+        settings_button.texture_hover = set_tex
 
 func _on_play_pressed():
 		var puzzle_scene = preload("res://scenes/PuzzleScreen.tscn").instantiate()
