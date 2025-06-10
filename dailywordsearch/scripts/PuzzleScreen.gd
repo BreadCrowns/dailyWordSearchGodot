@@ -4,6 +4,7 @@ extends Control
 @onready var grid = $MarginContainer/VBoxContainer/MarginContainer/AspectRatioContainer/GridContainer
 @onready var line_layer = $MarginContainer/VBoxContainer/MarginContainer/AspectRatioContainer/LineLayer
 @onready var back_button = $MarginContainer/VBoxContainer/HBoxContainer/back_button
+@onready var title_label = $MarginContainer/VBoxContainer/title
 @onready var word_list_col1 = [
 	$MarginContainer/VBoxContainer/word_list_container/word_columns/left_column/word_label_left_0,
 	$MarginContainer/VBoxContainer/word_list_container/word_columns/left_column/word_label_left_1,
