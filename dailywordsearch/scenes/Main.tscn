@@ -1,8 +1,54 @@
 [gd_scene load_steps=4 format=3 uid="uid://hvhnu1foown7"]
 
-[ext_resource type="Script" uid="uid://c6yhfwq7v7ve4" path="res://scripts/Main.gd" id="1_0bbpv"]
 [ext_resource type="PackedScene" uid="uid://bkfoyrg506w8s" path="res://scenes/MainMenu.tscn" id="2_rarhs"]
 [ext_resource type="PackedScene" uid="uid://c31dgj4sl456m" path="res://scenes/PuzzleScreen.tscn" id="3_vcsgt"]
+
+[sub_resource type="GDScript" id="GDScript_rvslj"]
+script/source = "extends Control
+
+# Paths to scenes for navigation
+const MAIN_MENU_SCENE := \"res://scenes/MainMenu.tscn\"
+const PUZZLE_SCENE := \"res://scenes/PuzzleScreen.tscn\"
+
+func _ready():
+<<<<<<< Updated upstream
+	# Load the main menu when the scene starts
+	go_to_main_menu()
+
+# Switch to the main menu scene
+func go_to_main_menu():
+	get_tree().change_scene_to_file(MAIN_MENU_SCENE)
+
+# Switch to the puzzle scene
+func go_to_puzzle():
+	get_tree().change_scene_to_file(PUZZLE_SCENE)
+
+# Placeholder for a history screen
+func go_to_history():
+	print(\"History screen not implemented\")
+# Placeholder for a settings screen
+func go_to_settings():
+	print(\"Settings screen not implemented\")
+=======
+		# Load the main menu when the scene starts
+		go_to_main_menu()
+
+# Switch to the main menu scene
+func go_to_main_menu():
+		get_tree().change_scene_to_file(MAIN_MENU_SCENE)
+
+# Switch to the puzzle scene
+func go_to_puzzle():
+		get_tree().change_scene_to_file(PUZZLE_SCENE)
+
+# Placeholder for a history screen
+func go_to_history():
+		print(\"History screen not implemented\")
+# Placeholder for a settings screen
+func go_to_settings():
+		print(\"Settings screen not implemented\")
+>>>>>>> Stashed changes
+"
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -11,7 +57,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0bbpv")
+script = SubResource("GDScript_rvslj")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_rarhs")]
 layout_mode = 2

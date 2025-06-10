@@ -4,8 +4,18 @@ extends Control
 @onready var history_list = $VBoxContainer/ScrollContainer/HistoryList
 
 func _ready():
+	_add_background()
 	back_button.pressed.connect(_on_back_pressed)
+	back_button.add_theme_color_override("font_color", ThemeConfig.LETTER_COLOR)
 	load_history()
+
+func _add_background():
+	var bg = ColorRect.new()
+	bg.anchor_right = 1
+	bg.anchor_bottom = 1
+	bg.color = ThemeConfig.BG_COLOR
+	add_child(bg)
+	move_child(bg, 0)
 
 func load_history():
 	for child in history_list.get_children():
@@ -22,6 +32,7 @@ func load_history():
 				var date = entry.get("date", "")
 				var count = entry.get("solved_words", []).size()
 				label.text = "%s - %d words" % [date, count]
+				label.add_theme_color_override("font_color", ThemeConfig.LETTER_COLOR)
 				history_list.add_child(label)
 
 func _on_back_pressed():
