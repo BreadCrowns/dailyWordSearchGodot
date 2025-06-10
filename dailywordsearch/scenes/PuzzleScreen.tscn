@@ -89,32 +89,37 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="word_label_left_0" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/left_column"]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_horizontal = 8
 text = "WORD 1"
 horizontal_alignment = 2
 
 [node name="word_label_left_1" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/left_column"]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_horizontal = 8
 text = "WORD 2"
 horizontal_alignment = 2
 
 [node name="word_label_left_2" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/left_column"]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_horizontal = 8
 text = "WORD 3"
 horizontal_alignment = 2
 
 [node name="word_label_left_3" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/left_column"]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_horizontal = 8
 text = "WORD 4"
 horizontal_alignment = 2
 
 [node name="word_label_left_4" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/left_column"]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_horizontal = 8
 text = "WORD 5"
 horizontal_alignment = 2
 
@@ -128,28 +133,33 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="word_label_right_0" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/right_column"]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_horizontal = 0
 text = "WORD 6"
 
 [node name="word_label_right_1" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/right_column"]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_horizontal = 0
 text = "WORD 7"
 
 [node name="word_label_right_2" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/right_column"]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_horizontal = 0
 text = "WORD 8"
 
 [node name="word_label_right_3" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/right_column"]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_horizontal = 0
 text = "WORD 9"
 
 [node name="word_label_right_4" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/word_columns/right_column"]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_horizontal = 0
 text = "WORD 10"
 
 [node name="center_word_container" type="CenterContainer" parent="MarginContainer/VBoxContainer/word_list_container"]
@@ -157,7 +167,7 @@ layout_mode = 2
 size_flags_vertical = 2
 
 [node name="word_label_center" type="Label" parent="MarginContainer/VBoxContainer/word_list_container/center_word_container"]
-custom_minimum_size = Vector2(100, 30)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "WORD 11"
 horizontal_alignment = 1
