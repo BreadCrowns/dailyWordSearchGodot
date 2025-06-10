@@ -1,13 +1,26 @@
 extends Control
 
+const Theme = preload("res://scripts/Theme.gd")
+
 @onready var play_button = $VBoxContainer/PlayButton
 @onready var history_button = $VBoxContainer/HistoryButton
 @onready var settings_button = $VBoxContainer/SettingsButton
 
 func _ready():
+        _add_background()
         play_button.pressed.connect(_on_play_pressed)
         history_button.pressed.connect(_on_history_pressed)
         settings_button.pressed.connect(_on_settings_pressed)
+        for btn in [play_button, history_button, settings_button]:
+                btn.add_theme_color_override("font_color", Theme.LETTER_COLOR)
+
+func _add_background():
+        var bg = ColorRect.new()
+        bg.anchor_right = 1
+        bg.anchor_bottom = 1
+        bg.color = Theme.BG_COLOR
+        add_child(bg)
+        move_child(bg, 0)
 
 func _on_play_pressed():
                 var puzzle_scene = preload("res://scenes/PuzzleScreen.tscn").instantiate()
