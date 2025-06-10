@@ -1,5 +1,5 @@
 extends Node
-class_name ThemeConfig
+class_name GameTheme
 
 # Colors used throughout the UI
 const BG_COLOR       : Color = Color(0.1, 0.1, 0.1)
