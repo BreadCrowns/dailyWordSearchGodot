@@ -7,6 +7,7 @@ const ThemeConfig = preload("res://scripts/Theme.gd")
 @onready var line_layer = $MarginContainer/VBoxContainer/MarginContainer/AspectRatioContainer/LineLayer
 @onready var back_button = $MarginContainer/VBoxContainer/HBoxContainer/back_button
 @onready var title_label = $MarginContainer/VBoxContainer/title
+@onready var ui_container = $MarginContainer
 @onready var word_list_col1 = [
 		$MarginContainer/VBoxContainer/word_list_container/word_columns/left_column/word_label_left_0,
 		$MarginContainer/VBoxContainer/word_list_container/word_columns/left_column/word_label_left_1,
@@ -95,18 +96,19 @@ func _add_strikethrough(label: Control, color: Color):
 
 # Initialization
 func _ready():
-		http_request = HTTPRequest.new()
-		add_child(http_request)
-		http_request.request_completed.connect(_on_puzzle_request_completed)
-		puzzle_date = Time.get_date_string_from_system()
+                ui_container.visible = false
+                set_process_input(false)
+                http_request = HTTPRequest.new()
+                add_child(http_request)
+                http_request.request_completed.connect(_on_puzzle_request_completed)
+                puzzle_date = Time.get_date_string_from_system()
 
 		_init_background()
 		_apply_title_font()
 		_apply_colors()
 
-		request_puzzle(puzzle_date)
-		set_process_input(true)
-		back_button.pressed.connect(_on_back_pressed)
+                request_puzzle(puzzle_date)
+                back_button.pressed.connect(_on_back_pressed)
 
 # Handle back button press
 func _on_back_pressed():
@@ -123,15 +125,17 @@ func request_puzzle(date: String):
 		http_request.request(url)
 
 func _on_puzzle_request_completed(result, response_code, headers, body):
-		if result == OK and response_code == 200:
-				var text = body.get_string_from_utf8()
-				var data = JSON.parse_string(text)
-				if typeof(data) == TYPE_DICTIONARY:
-						grid_letters = data.get("grid", grid_letters)
-						words = data.get("words", words)
-		generate_grid()
-		load_words()
-		_apply_colors()
+                if result == OK and response_code == 200:
+                                var text = body.get_string_from_utf8()
+                                var data = JSON.parse_string(text)
+                                if typeof(data) == TYPE_DICTIONARY:
+                                                grid_letters = data.get("grid", grid_letters)
+                                                words = data.get("words", words)
+                generate_grid()
+                load_words()
+                _apply_colors()
+                ui_container.visible = true
+                set_process_input(true)
 
 # Generate the letter grid from the predefined string
 func generate_grid():
