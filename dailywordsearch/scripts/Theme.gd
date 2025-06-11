@@ -13,3 +13,9 @@ const LETTER_COLOR := Color(38.0 / 255.0, 70.0 / 255.0, 83.0 / 255.0)
 const GRAPHIC_COLOR := Color(90.0 / 255.0, 32.0 / 255.0, 46.0 / 255.0)
 const LINE_COLOR := Color(243.0 / 255.0, 155.0 / 255.0, 83.0 / 255.0)
 const SECRET_COLOR := Color(231.0 / 255.0, 111.0 / 255.0, 81.0 / 255.0)
+
+# Shared ShaderMaterial used for all tinted graphics.
+const LINE_MATERIAL := preload("res://assets/SharedLineMaterial.tres")
+
+static func apply_line_color(color: Color) -> void:
+    LINE_MATERIAL.set_shader_parameter("line_color", color)

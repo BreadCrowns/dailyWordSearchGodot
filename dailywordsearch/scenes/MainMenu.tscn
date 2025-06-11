@@ -3,17 +3,7 @@
 [ext_resource type="Script" uid="uid://dnq6qb2s3skvt" path="res://scripts/MainMenu.gd" id="1_i26rj"]
 [ext_resource type="Texture2D" uid="uid://cc5sdnrkjlu0m" path="res://assets/SpectacledGiraffeMascot.png" id="2_0ykhv"]
 [ext_resource type="Texture2D" uid="uid://nxq4o82mekl6" path="res://assets/SpectacledGiraffeDailyWordSearchLogo.png" id="2_2wh52"]
-[ext_resource type="Shader" uid="uid://b58ck4f1i0dvl" path="res://assets/MultiplyTint.gdshader" id="2_l72w3"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_826wr"]
-shader = ExtResource("2_l72w3")
-shader_parameter/my_texture = ExtResource("2_2wh52")
-shader_parameter/line_color = Vector4(1, 0, 0, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ow34m"]
-shader = ExtResource("2_l72w3")
-shader_parameter/my_texture = ExtResource("2_0ykhv")
-shader_parameter/line_color = Vector4(0, 0, 0, 1)
+[ext_resource type="ShaderMaterial" path="res://assets/SharedLineMaterial.tres" id="3_sdmat"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -74,7 +64,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer"]
-material = SubResource("ShaderMaterial_826wr")
+material = ExtResource("3_sdmat")
 layout_mode = 2
 texture = ExtResource("2_2wh52")
 expand_mode = 4
@@ -97,7 +87,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 2.75
 
 [node name="SpectacledGiraffeMascot" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_ow34m")
+material = ExtResource("3_sdmat")
 layout_mode = 0
 offset_left = 428.0
 offset_top = 928.0

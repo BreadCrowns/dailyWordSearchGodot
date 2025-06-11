@@ -15,7 +15,7 @@ func _ready():
 				settings_button.pressed.connect(_on_settings_pressed)
 				for btn in [play_button, history_button, settings_button]:
 								btn.add_theme_color_override("font_color", ThemeConfig.LETTER_COLOR)
-				_set_logo_shader_color()
+                                ThemeConfig.apply_line_color(ThemeConfig.GRAPHIC_COLOR)
 
 func _add_background():
 				var bg = ColorRect.new()
@@ -25,13 +25,6 @@ func _add_background():
 				add_child(bg)
 				move_child(bg, 0)
 
-func _set_logo_shader_color():
-		if logo_texture_rect.material is ShaderMaterial:
-				var mat: ShaderMaterial = logo_texture_rect.material
-				mat.set_shader_parameter("line_color", ThemeConfig.GRAPHIC_COLOR)
-		if mascot_texture_rect.material is ShaderMaterial:
-				var mat: ShaderMaterial = mascot_texture_rect.material
-				mat.set_shader_parameter("line_color", ThemeConfig.GRAPHIC_COLOR)
 
 func _on_play_pressed():
 				var puzzle_scene = preload("res://scenes/PuzzleScreen.tscn").instantiate()
