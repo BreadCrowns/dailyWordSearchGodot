@@ -18,4 +18,4 @@ const SECRET_COLOR := Color(231.0 / 255.0, 111.0 / 255.0, 81.0 / 255.0)
 const LINE_MATERIAL := preload("res://assets/SharedLineMaterial.tres")
 
 static func apply_line_color(color: Color) -> void:
-    LINE_MATERIAL.set_shader_parameter("line_color", color)
+	LINE_MATERIAL.set_shader_parameter("line_color", color)

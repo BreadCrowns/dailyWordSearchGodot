@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkfoyrg506w8s"]
+[gd_scene load_steps=5 format=3 uid="uid://bkfoyrg506w8s"]
 
 [ext_resource type="Script" uid="uid://dnq6qb2s3skvt" path="res://scripts/MainMenu.gd" id="1_i26rj"]
 [ext_resource type="Texture2D" uid="uid://cc5sdnrkjlu0m" path="res://assets/SpectacledGiraffeMascot.png" id="2_0ykhv"]
 [ext_resource type="Texture2D" uid="uid://nxq4o82mekl6" path="res://assets/SpectacledGiraffeDailyWordSearchLogo.png" id="2_2wh52"]
-[ext_resource type="ShaderMaterial" path="res://assets/SharedLineMaterial.tres" id="3_sdmat"]
+[ext_resource type="Material" path="res://assets/SharedLineMaterial.tres" id="3_sdmat"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

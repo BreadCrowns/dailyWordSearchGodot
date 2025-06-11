@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b46qfebdflt2k" path="res://scripts/PuzzleScreen.gd" id="1_pw1eq"]
 [ext_resource type="Texture2D" uid="uid://cc5sdnrkjlu0m" path="res://assets/SpectacledGiraffeMascot.png" id="2_2b3mu"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2b3mu"]
-blend_mode = 3
+[ext_resource type="Material" path="res://assets/SharedLineMaterial.tres" id="2_6utdk"]
 
 [node name="PuzzleScreen" type="Control"]
 layout_mode = 3
@@ -16,7 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_pw1eq")
 
 [node name="SpectacledGiraffeMascot" type="Sprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_2b3mu")
+material = ExtResource("2_6utdk")
 position = Vector2(580, 1324)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_2b3mu")

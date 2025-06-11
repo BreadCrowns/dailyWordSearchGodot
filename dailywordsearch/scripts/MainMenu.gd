@@ -15,7 +15,7 @@ func _ready():
 				settings_button.pressed.connect(_on_settings_pressed)
 				for btn in [play_button, history_button, settings_button]:
 								btn.add_theme_color_override("font_color", ThemeConfig.LETTER_COLOR)
-                                ThemeConfig.apply_line_color(ThemeConfig.GRAPHIC_COLOR)
+								ThemeConfig.apply_line_color(ThemeConfig.GRAPHIC_COLOR)
 
 func _add_background():
 				var bg = ColorRect.new()
