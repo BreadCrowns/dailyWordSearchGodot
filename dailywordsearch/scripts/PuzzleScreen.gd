@@ -7,6 +7,7 @@ const ThemeConfig = preload("res://scripts/Theme.gd")
 @onready var line_layer = $MarginContainer/VBoxContainer/MarginContainer/AspectRatioContainer/LineLayer
 @onready var back_button = $MarginContainer/VBoxContainer/HBoxContainer/back_button
 @onready var title_label = $MarginContainer/VBoxContainer/title
+@onready var ui_container = $MarginContainer
 @onready var word_list_col1 = [
 		$MarginContainer/VBoxContainer/word_list_container/word_columns/left_column/word_label_left_0,
 		$MarginContainer/VBoxContainer/word_list_container/word_columns/left_column/word_label_left_1,
@@ -95,6 +96,8 @@ func _add_strikethrough(label: Control, color: Color):
 
 # Initialization
 func _ready():
+		ui_container.visible = false
+		set_process_input(false)
 		http_request = HTTPRequest.new()
 		add_child(http_request)
 		http_request.request_completed.connect(_on_puzzle_request_completed)
@@ -105,7 +108,6 @@ func _ready():
 		_apply_colors()
 
 		request_puzzle(puzzle_date)
-		set_process_input(true)
 		back_button.pressed.connect(_on_back_pressed)
 
 # Handle back button press
@@ -132,6 +134,8 @@ func _on_puzzle_request_completed(result, response_code, headers, body):
 		generate_grid()
 		load_words()
 		_apply_colors()
+		ui_container.visible = true
+		set_process_input(true)
 
 # Generate the letter grid from the predefined string
 func generate_grid():
