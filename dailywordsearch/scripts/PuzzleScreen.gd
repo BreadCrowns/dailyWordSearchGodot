@@ -126,11 +126,11 @@ func request_puzzle(date: String):
 
 func _on_puzzle_request_completed(result, response_code, headers, body):
 		if result == OK and response_code == 200:
-		                var text = body.get_string_from_utf8()
-		                var data = JSON.parse_string(text)
-		                if typeof(data) == TYPE_DICTIONARY:
-		                                grid_letters = data.get("grid", grid_letters)
-		                                words = data.get("words", words)
+			var text = body.get_string_from_utf8()
+			var data = JSON.parse_string(text)
+			if typeof(data) == TYPE_DICTIONARY:
+				grid_letters = data.get("grid", grid_letters)
+				words = data.get("words", words)
 		generate_grid()
 		load_words()
 		_apply_colors()
