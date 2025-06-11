@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkfoyrg506w8s"]
+[gd_scene load_steps=4 format=3 uid="uid://bkfoyrg506w8s"]
 
 [ext_resource type="Script" uid="uid://dnq6qb2s3skvt" path="res://scripts/MainMenu.gd" id="1_i26rj"]
+[ext_resource type="Texture2D" uid="uid://cc5sdnrkjlu0m" path="res://assets/SpectacledGiraffeMascot.png" id="2_0ykhv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2wh52"]
+blend_mode = 3
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -17,20 +21,78 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="PlayButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="history_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "H"
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.31
+
+[node name="settings_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "S"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="title" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_colors/font_color = Color(0.783432, 3.70607e-06, 6.73831e-07, 1)
+theme_override_font_sizes/font_size = 50
+text = "TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="play_button" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "PLAY"
 
-[node name="HistoryButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 4
-text = "HISTORY"
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.7
 
-[node name="SettingsButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_vertical = 4
-text = "SETTINGS"
+[node name="SpectacledGiraffeMascot" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_2wh52")
+position = Vector2(580, 1123)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_0ykhv")
