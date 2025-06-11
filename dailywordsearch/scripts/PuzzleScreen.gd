@@ -41,6 +41,9 @@ var drag_end: Vector2i = Vector2i(-1, -1)
 var dragging: bool = false
 var active_line: Line2D = null
 
+# Constants
+const SECRET_INDEX := 10
+
 # Appearance configuration
 var bg_rect: ColorRect
 
@@ -73,7 +76,21 @@ func _apply_grid_font_to_child(child):
 				child.add_theme_font_override("font", load(ThemeConfig.GRID_FONT_PATH))
 
 func _apply_word_font_to_label(label):
-		label.add_theme_font_override("font", load(ThemeConfig.WORD_FONT_PATH))
+				label.add_theme_font_override("font", load(ThemeConfig.WORD_FONT_PATH))
+
+func _add_strikethrough(label: Control, color: Color):
+				if label.has_node("Strike"):
+								return
+				var rect := ColorRect.new()
+				rect.name = "Strike"
+				rect.color = color
+				rect.anchor_left = 0
+				rect.anchor_right = 1
+				rect.anchor_top = 0.5
+				rect.anchor_bottom = 0.5
+				rect.offset_top = -1
+				rect.offset_bottom = 1
+				label.add_child(rect)
 
 
 # Initialization
@@ -202,36 +219,55 @@ func _input(event):
 
 # Word selection logic
 func process_selection(start: Vector2i, end: Vector2i) -> bool:
-		var direction = end - start
-		var step = direction.sign()
-		if not is_straight_line(start, end):
+				var direction = end - start
+				var step = direction.sign()
+				if not is_straight_line(start, end):
+								return false
+
+				var selected_word := ""
+				var pos = start
+				while pos != end + step:
+								var index = pos.y * GRID_SIZE + pos.x
+								if index >= 0 and index < grid_letters.length():
+												selected_word += grid_letters[index]
+								pos += step
+
+				var match_index := -1
+				for i in range(words.size()):
+								var lw = words[i].to_lower()
+								if lw == selected_word.to_lower() or lw == selected_word.reverse().to_lower():
+												match_index = i
+												break
+
+				if match_index != -1:
+								var normalized = words[match_index].to_lower()
+								if normalized not in solved_words:
+												solved_words.append(normalized)
+
+								var label: Label = null
+								if match_index < 5:
+												label = word_list_col1[match_index]
+								elif match_index < 10:
+												label = word_list_col2[match_index - 5]
+								else:
+												label = word_label_center
+
+								if match_index == SECRET_INDEX:
+												label.text = words[match_index].to_upper()
+												label.add_theme_color_override("font_color", ThemeConfig.SECRET_COLOR)
+												_add_strikethrough(label, ThemeConfig.SECRET_COLOR)
+												if active_line:
+																active_line.default_color = ThemeConfig.SECRET_COLOR
+																active_line.modulate = ThemeConfig.SECRET_COLOR
+								else:
+												label.modulate = Color(1, 1, 1, 0.5)
+												_add_strikethrough(label, ThemeConfig.LINE_COLOR)
+
+								if solved_words.size() == words.size():
+												_record_history()
+								return true
+
 				return false
-
-		var selected_word := ""
-		var pos = start
-		while pos != end + step:
-				var index = pos.y * GRID_SIZE + pos.x
-				if index >= 0 and index < grid_letters.length():
-						selected_word += grid_letters[index]
-				pos += step
-
-		var match := words.any(func(w): return w.to_lower() == selected_word.to_lower() or w.to_lower() == selected_word.reverse().to_lower())
-		if match:
-				var normalized = selected_word.to_lower()
-				if normalized not in solved_words:
-						solved_words.append(normalized)
-				for label in word_list_col1 + word_list_col2 + [word_label_center]:
-						if words.size() > 10 and label == word_label_center and (words[10].to_lower() == normalized or words[10].to_lower() == normalized.reverse()):
-								label.text = words[10].to_upper()
-								label.add_theme_color_override("font_color", Color.GREEN)
-								break
-						elif label.text.to_lower() == normalized or label.text.to_lower() == normalized.reverse():
-								label.add_theme_color_override("font_color", Color.GREEN)
-								break
-				if solved_words.size() == words.size():
-						_record_history()
-				return true
-		return false
 
 func _record_history():
 		var path = "user://history.json"

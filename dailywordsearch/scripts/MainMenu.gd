@@ -2,9 +2,9 @@ extends Control
 
 const ThemeConfig = preload("res://scripts/Theme.gd")
 
-@onready var play_button = $VBoxContainer/PlayButton
-@onready var history_button = $VBoxContainer/HistoryButton
-@onready var settings_button = $VBoxContainer/SettingsButton
+@onready var play_button = $MarginContainer/VBoxContainer/play_button
+@onready var history_button = $MarginContainer/VBoxContainer/HBoxContainer/history_button
+@onready var settings_button = $MarginContainer/VBoxContainer/HBoxContainer/settings_button
 
 func _ready():
 		_add_background()
