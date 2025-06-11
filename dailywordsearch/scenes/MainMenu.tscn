@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkfoyrg506w8s"]
+[gd_scene load_steps=7 format=3 uid="uid://bkfoyrg506w8s"]
 
 [ext_resource type="Script" uid="uid://dnq6qb2s3skvt" path="res://scripts/MainMenu.gd" id="1_i26rj"]
 [ext_resource type="Texture2D" uid="uid://cc5sdnrkjlu0m" path="res://assets/SpectacledGiraffeMascot.png" id="2_0ykhv"]
+[ext_resource type="Texture2D" uid="uid://nxq4o82mekl6" path="res://assets/SpectacledGiraffeDailyWordSearchLogo.png" id="2_2wh52"]
+[ext_resource type="Shader" uid="uid://b58ck4f1i0dvl" path="res://assets/MultiplyTint.gdshader" id="2_l72w3"]
+[ext_resource type="Material" uid="uid://cb0mpkaedy73d" path="res://assets/MultipleMaterial.tres" id="2_ow34m"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2wh52"]
-blend_mode = 3
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_826wr"]
+shader = ExtResource("2_l72w3")
+shader_parameter/my_texture = ExtResource("2_2wh52")
+shader_parameter/line_color = Vector4(1, 0, 0, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -64,15 +69,11 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="title" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer"]
+material = SubResource("ShaderMaterial_826wr")
 layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.1
-theme_override_colors/font_color = Color(0.783432, 3.70607e-06, 6.73831e-07, 1)
-theme_override_font_sizes/font_size = 50
-text = "TITLE"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture = ExtResource("2_2wh52")
+expand_mode = 4
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -89,10 +90,10 @@ text = "PLAY"
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.7
+size_flags_stretch_ratio = 2.75
 
 [node name="SpectacledGiraffeMascot" type="Sprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_2wh52")
+material = ExtResource("2_ow34m")
 position = Vector2(580, 1123)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_0ykhv")
