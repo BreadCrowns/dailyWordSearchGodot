@@ -3,7 +3,6 @@ extends Control
 const ThemeConfig = preload("res://scripts/Theme.gd")
 
 @onready var play_button = $MarginContainer/VBoxContainer/play_button
-@onready var history_button = $MarginContainer/VBoxContainer/HBoxContainer/history_button
 @onready var settings_button = $MarginContainer/VBoxContainer/HBoxContainer/settings_button
 @onready var logo_texture_rect = $MarginContainer/VBoxContainer/MarginContainer/TextureRect
 @onready var mascot_texture_rect = $SpectacledGiraffeMascot
@@ -11,9 +10,8 @@ const ThemeConfig = preload("res://scripts/Theme.gd")
 func _ready():
 				_add_background()
 				play_button.pressed.connect(_on_play_pressed)
-				history_button.pressed.connect(_on_history_pressed)
 				settings_button.pressed.connect(_on_settings_pressed)
-				for btn in [play_button, history_button, settings_button]:
+				for btn in [play_button, settings_button]:
 								btn.add_theme_color_override("font_color", ThemeConfig.LETTER_COLOR)
 								ThemeConfig.apply_line_color(ThemeConfig.GRAPHIC_COLOR)
 

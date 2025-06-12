@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c31dgj4sl456m"]
+[gd_scene load_steps=5 format=3 uid="uid://c31dgj4sl456m"]
 
 [ext_resource type="Script" uid="uid://b46qfebdflt2k" path="res://scripts/PuzzleScreen.gd" id="1_pw1eq"]
 [ext_resource type="Texture2D" uid="uid://cc5sdnrkjlu0m" path="res://assets/SpectacledGiraffeMascot.png" id="2_2b3mu"]
 [ext_resource type="Material" path="res://assets/SharedLineMaterial.tres" id="2_6utdk"]
+[ext_resource type="Texture2D" uid="uid://cb68bo3nrb73n" path="res://assets/ArrowIcon.svg" id="4_krq1g"]
 
 [node name="PuzzleScreen" type="Control"]
 layout_mode = 3
@@ -37,22 +38,19 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.1
+size_flags_stretch_ratio = 0.15
 
 [node name="back_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+material = ExtResource("2_6utdk")
 layout_mode = 2
 size_flags_horizontal = 3
-text = "B"
+icon = ExtResource("4_krq1g")
+expand_icon = true
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 5.31
-
-[node name="settings_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "S"
+size_flags_stretch_ratio = 5.0
 
 [node name="title" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
