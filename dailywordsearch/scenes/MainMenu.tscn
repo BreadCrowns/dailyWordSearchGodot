@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkfoyrg506w8s"]
+[gd_scene load_steps=6 format=3 uid="uid://bkfoyrg506w8s"]
 
 [ext_resource type="Script" uid="uid://dnq6qb2s3skvt" path="res://scripts/MainMenu.gd" id="1_i26rj"]
 [ext_resource type="Texture2D" uid="uid://cc5sdnrkjlu0m" path="res://assets/SpectacledGiraffeMascot.png" id="2_0ykhv"]
 [ext_resource type="Texture2D" uid="uid://nxq4o82mekl6" path="res://assets/SpectacledGiraffeDailyWordSearchLogo.png" id="2_2wh52"]
 [ext_resource type="Material" path="res://assets/SharedLineMaterial.tres" id="3_sdmat"]
+[ext_resource type="Texture2D" uid="uid://1a66ywyg3qjk" path="res://assets/SettingsIcon.svg" id="3_ucygd"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -38,22 +39,19 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.1
+size_flags_stretch_ratio = 0.5
 
-[node name="history_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="settings_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+material = ExtResource("3_sdmat")
 layout_mode = 2
 size_flags_horizontal = 3
-text = "H"
+icon = ExtResource("3_ucygd")
+expand_icon = true
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.31
-
-[node name="settings_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "S"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
