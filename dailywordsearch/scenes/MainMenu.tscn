@@ -33,7 +33,6 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
 [node name="settings_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
@@ -48,6 +47,11 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.31
+
+[node name="Control3" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -78,14 +82,19 @@ text = "PLAY"
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.75
 
 [node name="SpectacledGiraffeMascot" type="TextureRect" parent="."]
 material = ExtResource("3_sdmat")
-layout_mode = 0
-offset_left = 428.0
-offset_top = 928.0
-offset_right = 1452.0
-offset_bottom = 2464.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 445.0
+offset_top = -354.0
+offset_right = 749.0
+offset_bottom = 1182.0
+grow_horizontal = 2
+grow_vertical = 0
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_0ykhv")
