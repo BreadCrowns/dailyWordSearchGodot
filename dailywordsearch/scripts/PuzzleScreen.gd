@@ -283,9 +283,9 @@ func _record_history():
 				if typeof(data) == TYPE_ARRAY:
 						history = data
 		history.append({"date": puzzle_date, "solved_words": solved_words})
-		file = FileAccess.open(path, FileAccess.WRITE)
-		file.store_string(JSON.stringify(history))
-		file.close()
+		#file = FileAccess.open(path, FileAccess.WRITE)
+		#file.store_string(JSON.stringify(history))
+		#file.close()
 
 # Utilities
 func get_grid_cell_from_position(pos: Vector2) -> Vector2i:

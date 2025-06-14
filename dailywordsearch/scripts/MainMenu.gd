@@ -12,14 +12,14 @@ func _ready():
 				play_button.pressed.connect(_on_play_pressed)
 				settings_button.pressed.connect(_on_settings_pressed)
 				for btn in [play_button, settings_button]:
-                                                             btn.add_theme_color_override("font_color", ThemeData.LETTER_COLOR)
-                                                             ThemeData.apply_line_color(ThemeData.GRAPHIC_COLOR)
+					btn.add_theme_color_override("font_color", ThemeData.LETTER_COLOR)
+					ThemeData.apply_line_color(ThemeData.GRAPHIC_COLOR)
 
 func _add_background():
 				var bg = ColorRect.new()
 				bg.anchor_right = 1
 				bg.anchor_bottom = 1
-                             bg.color = ThemeData.BG_COLOR
+				bg.color = ThemeData.BG_COLOR
 				add_child(bg)
 				move_child(bg, 0)
 
