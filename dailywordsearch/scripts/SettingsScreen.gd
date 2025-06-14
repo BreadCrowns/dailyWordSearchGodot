@@ -1,9 +1,10 @@
 extends Control
 
-@onready var version_label = %VBoxContainer/InfoSection/InfoVBox/VersionLabel
-@onready var build_label = %VBoxContainer/InfoSection/InfoVBox/BuildLabel
-@onready var platform_label = %VBoxContainer/InfoSection/InfoVBox/PlatformLabel
-@onready var device_label = %VBoxContainer/InfoSection/InfoVBox/DeviceLabel
+@onready var version_label = $VBoxContainer/InfoSection/InfoVBox/VersionLabel
+@onready var build_label = $VBoxContainer/InfoSection/InfoVBox/BuildLabel
+@onready var platform_label = $VBoxContainer/InfoSection/InfoVBox/PlatformLabel
+@onready var device_label = $VBoxContainer/InfoSection/InfoVBox/DeviceLabel
+@onready var back_button = $VBoxContainer/HBoxContainer/back_button
 
 func _ready():
 	version_label.text = "App Version: 1.0.0"
@@ -11,6 +12,15 @@ func _ready():
 	platform_label.text = "Platform: " + OS.get_name()
 	device_label.text = "Device ID: " + OS.get_unique_id()
 
+func _on_back_pressed():
+		var scene = load("res://scenes/MainMenu.tscn")
+		if scene:
+				var main_menu = scene.instantiate()
+				get_tree().root.add_child(main_menu)
+				queue_free()
+		else:
+				push_error("Failed to load MainMenu.tscn")
+				
 func _on_HelpButton_pressed():
 	OS.shell_open("https://yourdomain.com/help")
 
