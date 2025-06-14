@@ -1,9 +1,9 @@
 extends Control
 
-@onready var version_label = %VBoxContainer/InfoSection/InfoVBox/VersionLabel
-@onready var build_label = %VBoxContainer/InfoSection/InfoVBox/BuildLabel
-@onready var platform_label = %VBoxContainer/InfoSection/InfoVBox/PlatformLabel
-@onready var device_label = %VBoxContainer/InfoSection/InfoVBox/DeviceLabel
+@onready var version_label = $VBoxContainer/InfoSection/InfoVBox/VersionLabel
+@onready var build_label = $VBoxContainer/InfoSection/InfoVBox/BuildLabel
+@onready var platform_label = $VBoxContainer/InfoSection/InfoVBox/PlatformLabel
+@onready var device_label = $VBoxContainer/InfoSection/InfoVBox/DeviceLabel
 
 func _ready():
 	version_label.text = "App Version: 1.0.0"

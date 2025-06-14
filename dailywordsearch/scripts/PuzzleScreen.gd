@@ -1,6 +1,6 @@
 extends Control
 
-const ThemeConfig = preload("res://scripts/Theme.gd")
+const ThemeData = preload("res://scripts/Theme.gd")
 
 # Node references for the grid, word labels, and dynamic line container
 @onready var grid = $MarginContainer/VBoxContainer/MarginContainer/AspectRatioContainer/GridContainer
@@ -52,32 +52,32 @@ func _init_background():
 		bg_rect = ColorRect.new()
 		bg_rect.anchor_right = 1
 		bg_rect.anchor_bottom = 1
-		bg_rect.color = ThemeConfig.BG_COLOR
+		bg_rect.color = ThemeData.BG_COLOR
 		add_child(bg_rect)
 		move_child(bg_rect, 0)
 
 func _apply_colors():
-		title_label.add_theme_color_override("font_color", ThemeConfig.LETTER_COLOR)
+		title_label.add_theme_color_override("font_color", ThemeData.LETTER_COLOR)
 		for child in grid.get_children():
 				if child is Label:
-						child.add_theme_color_override("font_color", ThemeConfig.LETTER_COLOR)
+						child.add_theme_color_override("font_color", ThemeData.LETTER_COLOR)
 		for label in word_list_col1 + word_list_col2 + [word_label_center]:
 				if label.get_theme_color("font_color") != Color.GREEN:
-						label.add_theme_color_override("font_color", ThemeConfig.LETTER_COLOR)
+						label.add_theme_color_override("font_color", ThemeData.LETTER_COLOR)
 		for line in line_layer.get_children():
 				if line is Line2D:
-						line.default_color = ThemeConfig.LINE_COLOR
-						line.modulate = ThemeConfig.LINE_COLOR
+						line.default_color = ThemeData.LINE_COLOR
+						line.modulate = ThemeData.LINE_COLOR
 
 func _apply_title_font():
-		title_label.add_theme_font_override("font", load(ThemeConfig.TITLE_FONT_PATH))
+		title_label.add_theme_font_override("font", load(ThemeData.TITLE_FONT_PATH))
 
 func _apply_grid_font_to_child(child):
 		if child is Label:
-				child.add_theme_font_override("font", load(ThemeConfig.GRID_FONT_PATH))
+				child.add_theme_font_override("font", load(ThemeData.GRID_FONT_PATH))
 
 func _apply_word_font_to_label(label):
-				label.add_theme_font_override("font", load(ThemeConfig.WORD_FONT_PATH))
+				label.add_theme_font_override("font", load(ThemeData.WORD_FONT_PATH))
 
 func _add_strikethrough(label: Control, color: Color):
 				if label.has_node("Strike"):
@@ -160,7 +160,7 @@ func generate_grid():
 						label.custom_minimum_size = Vector2(48, 48)
 						label.add_theme_font_size_override("font_size", 24)
 						_apply_grid_font_to_child(label)
-						label.add_theme_color_override("font_color", ThemeConfig.LETTER_COLOR)
+						label.add_theme_color_override("font_color", ThemeData.LETTER_COLOR)
 						label.set_meta("grid_pos", Vector2i(x, y))
 						grid.add_child(label)
 
@@ -168,19 +168,19 @@ func generate_grid():
 func load_words():
 		for i in range(min(5, words.size())):
 				word_list_col1[i].text = words[i].to_upper()
-				word_list_col1[i].add_theme_color_override("font_color", ThemeConfig.LETTER_COLOR)
+				word_list_col1[i].add_theme_color_override("font_color", ThemeData.LETTER_COLOR)
 				word_list_col1[i].add_theme_font_size_override("font_size", 30)
 				_apply_word_font_to_label(word_list_col1[i])
 		for i in range(5, min(10, words.size())):
 				word_list_col2[i - 5].text = words[i].to_upper()
-				word_list_col2[i - 5].add_theme_color_override("font_color", ThemeConfig.LETTER_COLOR)
+				word_list_col2[i - 5].add_theme_color_override("font_color", ThemeData.LETTER_COLOR)
 				word_list_col2[i - 5].add_theme_font_size_override("font_size", 30)
 				_apply_word_font_to_label(word_list_col2[i - 5])
 		if words.size() > 10:
 				word_label_center.text = "?????"
 		else:
 				word_label_center.text = ""
-		word_label_center.add_theme_color_override("font_color", ThemeConfig.LETTER_COLOR)
+		word_label_center.add_theme_color_override("font_color", ThemeData.LETTER_COLOR)
 		word_label_center.add_theme_font_size_override("font_size", 30)
 		_apply_word_font_to_label(word_label_center)
 
@@ -195,7 +195,7 @@ func _input(event):
 						dragging = true
 						active_line = Line2D.new()
 						active_line.width = 30
-						active_line.default_color = ThemeConfig.LINE_COLOR
+						active_line.default_color = ThemeData.LINE_COLOR
 						active_line.begin_cap_mode = Line2D.LINE_CAP_ROUND
 						active_line.end_cap_mode = Line2D.LINE_CAP_ROUND
 						line_layer.add_child(active_line)
@@ -258,14 +258,14 @@ func process_selection(start: Vector2i, end: Vector2i) -> bool:
 
 								if match_index == SECRET_INDEX:
 												label.text = words[match_index].to_upper()
-												label.add_theme_color_override("font_color", ThemeConfig.SECRET_COLOR)
-												_add_strikethrough(label, ThemeConfig.SECRET_COLOR)
+												label.add_theme_color_override("font_color", ThemeData.SECRET_COLOR)
+												_add_strikethrough(label, ThemeData.SECRET_COLOR)
 												if active_line:
-																active_line.default_color = ThemeConfig.SECRET_COLOR
-																active_line.modulate = ThemeConfig.SECRET_COLOR
+																active_line.default_color = ThemeData.SECRET_COLOR
+																active_line.modulate = ThemeData.SECRET_COLOR
 								else:
 												label.modulate = Color(1, 1, 1, 0.5)
-												_add_strikethrough(label, ThemeConfig.LINE_COLOR)
+												_add_strikethrough(label, ThemeData.LINE_COLOR)
 
 								if solved_words.size() == words.size():
 												_record_history()
@@ -283,7 +283,7 @@ func _record_history():
 				if typeof(data) == TYPE_ARRAY:
 						history = data
 		history.append({"date": puzzle_date, "solved_words": solved_words})
-		var file = FileAccess.open(path, FileAccess.WRITE)
+		file = FileAccess.open(path, FileAccess.WRITE)
 		file.store_string(JSON.stringify(history))
 		file.close()
 
